@@ -14,7 +14,6 @@ class UsersController extends Controller
         $response = json_decode($response, TRUE);
 
         $newEntry = [];
-        $message = count($newEntry) . " new entry data has been added to the database.";
         foreach ($response as $key => $value) {
             $user = User::where('email', $value['email'])->first();
             if (empty($user)) {
@@ -24,6 +23,7 @@ class UsersController extends Controller
             }
         }
 
+        $message = count($newEntry) . " new entry data has been added to the database.";
         if (empty($newEntry)) {
             $message = "No new data";
         }
